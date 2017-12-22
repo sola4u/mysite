@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
+<!--必要样式-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/component.css' %}" />
+<html lang="en">
+<style type="text/css">
+	.demo-1 {background-image: {% static 'img/demo-1-bg.jpg' %}}
+</style> 
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+
+<body>
+		<div class="container demo-1">
+			<div class="content">
+				<div id="large-header" class="large-header">
+					<canvas id="demo-canvas"></canvas>
+					<div class="logo_box">
+						<h3 style="margin-left: 20px">{{msg}}</h3>
+						<form action="#" name="f" method="post">
+							<div class="input_outer">
+								<span class="u_user"></span>
+								<input name="username" class="text" style="font-size:1.2em;color: #FFFFFF !important" type="text" placeholder="请输入账户">
+							</div>
+							<div class="input_outer">
+								<span class="us_uer"></span>
+								<input name="password" class="text" style="font-size:1.2em;color: #FFFFFF !important; position:absolute; z-index:100;"value="" type="password" placeholder="请输入密码">
+							</div>
+							<div class="input_outer">
+								<input type='submit' class = 'text' value = "登    录" style="color:ghostwhite;font-size: 20px"/>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div><!-- /container -->
+		<script src="{% static 'js/TweenLite.min.js' %}"></script>÷
+		<script src="{% static 'js/EasePack.min.js' %}"></script>
+		<script src="{% static 'js/rAF.js' %}"></script>
+		<script src="{% static 'js/demo-1.js' %}"></script>
+<!-- <div style="text-align:center;">
+</div> -->
+</body>
+</html>
