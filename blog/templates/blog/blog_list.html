@@ -6,29 +6,6 @@
 	.blog{
 		background-color: #f8f8f8;
 		margin-top: 2px;
-		margin-left: 200px;
-		margin-right: 200px;
-		opacity: 0.8;
-	}
-	#a{
-		background-color: #f0f0f0;
-		border-color:white;
-		border-width: 120px;
-		padding-bottom: 10px;
-		padding-top: 10px;
-		text-indent: 1em;
-	}
-	#b{
-		text-indent: 1em;
-	}
-	.bloghead{
-		height: 150px; 
-		background-color: grey;
-		text-indent: 200px;
-		padding-top: 40px;
-		color: white;
-		opacity: 0.8;
-		/*position: fixed;*/
 	}
 
 </style>
@@ -37,20 +14,30 @@
     <meta charset="UTF-8">
    <title>blog list</title>
 </head>
+<script type="text/javascript">
+	window.onload=function(num){
+		try{
+			var s = parent.document.getElementById('myiframe') || null
+		}catch(e){}
+		s?s.style.height = document.body.offsetHeight + 100 + 'px':"";
+
+
+	}
+</script>
 <body>
 	<!-- <div style="position: absolute;">
 		<span><img src ="{% static 'img/1444971687349_5cmv8i.jpg!bigger.jpg' %}" style="position: fixed;" />
 		</span>
 	</div> -->
-	<div  class="bloghead">
+	<!-- <div  class="bloghead">
 		<h1>这是一个测试用的博客</h1>
 		<p style="text-indent: 210px;">life is short,use python</p>
 	</div>
-	<div>
+	<div> -->
 	</div>
 					{% for blog in blogs %}
 	<div class ='blog'>
-		<h2 id='a'>{{ blog.title }}</h2>
+		<h2 id='a' style="background-color: white">{{ blog.title }}</h2>
 			<p id='b'><a href="{% url 'blog_get_detail' blog.id %}" style="color:black;text-decoration: none;">
 			<span>作者:{{ blog.author }}</span> 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -16,13 +16,21 @@
         .blog{
         background-color: white;
         margin-top: 2px;
-        margin-left: 200px;
-        margin-right: 200px;
         text-align: 1em;
         }
     </style>
 </head>
-<body style="background-color: #e0e0e0">
+<script type="text/javascript">
+    window.onload=function(num){
+        try{
+            var s = parent.document.getElementById('myiframe') || null
+        }catch(e){}
+        s?s.style.height = document.body.offsetHeight + 100 + 'px':"";
+
+
+    }
+</script>
+<body style="background-color: #ffffff">
 
 <!-- <div class="header">
     <span><a href="{% url 'blog_get_detail' blog.id %}">{{ blog.title }}</a></span>

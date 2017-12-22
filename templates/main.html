@@ -3,13 +3,47 @@
 <head>
 	<title>main page</title>
 </head>
+<script type="text/javascript">
+	function changeSrc(srcname){
+		document.getElementById('myiframe').src = srcname;
+	}
+	function logout(){
+		var showDiv = document.getElementById("logout");
+		showDiv.style.display= 'block';
+	}
+	function logout2(){
+		var showDiv = document.getElementById("logout");
+		showDiv.style.display= 'none';
+	}
+</script>
+<style type="text/css">
+	#logout {
+		display: none;
+		text-align: right;
+		width: 200px;
+	}
+	div>a{
+		color:white;
+		text-decoration: none;
+		background-color: green;
+	}
+	#myiframe{
+		margin-top:100px;
+	}
+</style>
 <body>
-<h1> welcome {{ name }} </h1>
-<a href='/blog/blog'>list</a>
-<a href='/blog/editor'>editor</a>
-<a href='/rbac/logout'>logout</a> <a>欢迎登陆:{{ nickname }}{{ ip_addr }}</a></br>
-<div style="border-color: #ffffff;">
-<iframe src="/blog/blog" width="1200px" height=800px" scrolling=no ></iframe>
-</div>
+	<div style="background-color: #e0e0e0; height: 200px; ">
+		<h1 style="font-size:4em;color: white;">sola的个人网站</h1>
+		<h2 style="width:200px; margin-left:1300px;text-align: right;"  onmouseover="logout()" onmouseout="logout2()"> 欢迎登陆 {{ nickname }}
+		<div id='logout'><a href='/rbac/logout' >登出</a></div>
+		</h2>
+	</div>
+	<input  type='button' onclick="changeSrc('/blog/editor')" value="editor">
+	<input  type='button' onclick="changeSrc('/blog/blog')" value="blog">
+	<input  type='button' onclick="changeSrc('/rbac/regist')" value="regist">
+	<div style="border-color: #ffffff; width: 1000px; margin-left: 400px">
+	<iframe src="/blog/blog" id='myiframe' width="100%" height="100%" frameborder="0" scrolling=no >
+	</iframe>
+	</div>
 </body>
 </html>

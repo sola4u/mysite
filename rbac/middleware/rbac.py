@@ -42,7 +42,6 @@ class RbacMiddleware(MiddlewareMixin):
             return None
         else:
             if settings.DEBUG:
-                info = '<br />' + ("<br />".join(permission_url))
-                return HttpResponse("no access, please try:%s <a href='/rbac/login'>relogin</a>" %info)
+                return HttpResponse("没有权限访问!!!")
             else:
                 return HttpResponse("no access")
