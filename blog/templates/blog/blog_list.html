@@ -1,56 +1,43 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 {% load static %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+{% load markdown_deux_tags %}
 <style type="text/css">
-	.blog{
-		background-color: #f8f8f8;
-		margin-top: 2px;
+	body{
+		background: #f0f0f0;
 	}
-
+	#blog {
+		background-color:#ffffff;
+		margin-bottom: 60px;
+		height: 335px;
+		margin-top: -22px;
+		margin-left: -10px;
+		/*border-radius: 20px;*/
+		box-shadow: 5px 5px 5px silver;
+	}
+	#b{
+		font-size: 18px;
+		margin-left: 100px;
+		margin-right: 100px;
+	}
 </style>
-<head>
-<head>
-    <meta charset="UTF-8">
-   <title>blog list</title>
-</head>
-<script type="text/javascript">
-	window.onload=function(num){
-		try{
-			var s = parent.document.getElementById('myiframe') || null
-		}catch(e){}
-		s?s.style.height = document.body.offsetHeight + 100 + 'px':"";
-
-
-	}
-</script>
 <body>
-	<!-- <div style="position: absolute;">
-		<span><img src ="{% static 'img/1444971687349_5cmv8i.jpg!bigger.jpg' %}" style="position: fixed;" />
-		</span>
-	</div> -->
-	<!-- <div  class="bloghead">
-		<h1>这是一个测试用的博客</h1>
-		<p style="text-indent: 210px;">life is short,use python</p>
-	</div>
-	<div> -->
-	</div>
-					{% for blog in blogs %}
-	<div class ='blog'>
-		<h2 id='a' style="background-color: white">{{ blog.title }}</h2>
-			<p id='b'><a href="{% url 'blog_get_detail' blog.id %}" style="color:black;text-decoration: none;">
-			<span>作者:{{ blog.author }}</span> 
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<span>发表日期:{{ blog.created_date }}</span>
+	<div>
+			{% for blog in blogs %}
+			<div id='blog'>
+			</br>
+			<div style="margin-left:50px;margin-right:50px">
+			<h1 style="text-align:center;">{{ blog.title }}</h1>
+			<p style="text-align:center;"><span>作者：{{ blog.author }}</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span>发表日期：{{ blog.created_date }}</span>
 			</p>
-			<p id='b'>	{{ blog.content | truncatechars:300 }} </p>
-			<p id='b'><span style="color:red;">{{ blog.catagory.name }} </span>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<span style="color:red;">{{ blog.tag.name }}</span>
-			</p>
+			<a href="{% url 'blog_get_detail' blog.id %}" style="color:black;text-decoration: none;">
+			<p id='b'>	{{ blog.content |markdown| truncatechars:300 }} </p>
+			</a>
+		</div>
 	</div>
-
-	{% endfor %}
+			{% endfor %}
+	</div>
 </body>
-		
 </html>

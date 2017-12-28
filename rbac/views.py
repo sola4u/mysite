@@ -1,6 +1,6 @@
 #coding=utf-8
 from django.shortcuts import render,render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
 from .models import UserInfo as User
 from django.views.decorators.cache import cache_page
@@ -54,12 +54,13 @@ def login(request):
             if (len(userResult)>0):
                 userResult2 = User.objects.get(username=username)
                 request.session['member_id'] = userResult2.id
+                # request.session['username'] = userResult2.username
+                # request.session['nickname'] = userResult2.nickname
                 init_permission(request, userResult2)
-                settings.USERNAME = username
                 msg  = username + u'，登录成功！'
                 #return render_to_response('rbac/index.html',{"msg":msg})
-                #return render_to_response('main.html',{"name":username})
-                return render(request,'main.html',{"name":username})
+                return render_to_response('main.html')
+                # return render(request,'main.html')
             else:
                 return render_to_response('rbac/login.html',{"userform":userform,"msg":"用户名或密码错误！"})
     else:
@@ -77,5 +78,4 @@ def logout(request):
 
 
 def index(request):
-    return render_to_response("main.html",{'name':'Stranger'})
-
+    return render_to_response("main.html")

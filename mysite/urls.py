@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from rbac import views
+from markdownx import urls as markdownx
 
 urlpatterns = [
     url(r'^login/',views.login),
@@ -23,4 +24,5 @@ urlpatterns = [
     url(r'^users/',include("users.urls")),
     url(r'^blog/',include('blog.urls')),
     url(r'^rbac/',include('rbac.urls')),
+    url(r'^markdownx/',include(markdownx)),
 ]

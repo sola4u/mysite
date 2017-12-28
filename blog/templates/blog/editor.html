@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <title>blog editor</title>
-</head>
-<body>
 {% load static %}
-
-	<h1>add blog</h1>
-	<form method = 'post' enctype="multipart/form-data">
-		<p>{{blog_form.as_p}}</p>
-	
-		<p><input type="submit" value = "submit" /</p>
-		{{ msg }}
-	</form>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+<style>
+  body {
+    background-color: #f0f0f0;
+  }
+  #blog {
+    background-color: #ffffff;
+  	box-shadow: 5px 5px 5px silver;
+    height: 715px;
+    width: 100%;
+    margin-top: -22px;
+    margin-left: -10px;
+  }
+  #inner{
+  background-color: #ffffff;
+  margin-left: 100px;
+  }
+</style>
+<body>
+  <div id='blog'>
+    <div id='inner'>
+	     <form method = 'post' enctype="multipart/form-data">
+        </br>
+        </br>
+        <!-- <p>{{blog_form.as_p}}</p> -->
+        <input type="text" name='title' placeholder="title" /></br>
+        <input type="text" name='content' placeholder="content"  /></br>
+        <input type="text" name='catagory' placeholder="cata"  /></br>
+        <input type="text" name='tag' placeholder="tag"  /></br>
+    	   <input type="submit" value = "submit" />
+    		 {{ msg }}
+    	</form>
+</div>
+</div>
 </body>
 </html>

@@ -21,7 +21,7 @@ class MiddlewareMixin(object):
 class RbacMiddleware(MiddlewareMixin):
     def process_request(self, request):
         request_url = request.path_info
-        print(request_url)
+        print("request",request_url)
         permission_url = request.session.get(settings.SESSION_PERMISSION_URL_KEY)
 
         for url in settings.SAFE_URL:
@@ -42,6 +42,6 @@ class RbacMiddleware(MiddlewareMixin):
             return None
         else:
             if settings.DEBUG:
-                return HttpResponse("没有权限访问!!!")
+                return HttpResponse("<h2 style='margin-top:10%;margin-left:10%'>没有权限访问!!!</h2>")
             else:
                 return HttpResponse("no access")

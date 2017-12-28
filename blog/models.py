@@ -1,8 +1,8 @@
 #coding:utf8
 from django.db import models
 import django.utils.timezone as timezone
+from markdownx.models import MarkdownxField
 # Create your models here.
-from tinymce import models as tinymce_models
 
 class Catagory(models.Model):
     name = models.CharField('catagory',max_length=30)
@@ -19,8 +19,8 @@ class Tag(models.Model):
 class Blog(models.Model):
     title = models.CharField('title',max_length=32)
     author = models.CharField('author',max_length=16)
-#    content = models.TextField('content')
-    content = tinymce_models.HTMLField()
+    # content = models.TextField('content')
+    content = MarkdownxField()
     created_date = models.DateTimeField('created_date',auto_now_add=True)
     catagory = models.ForeignKey(Catagory,verbose_name='catagory')
     tag = models.ManyToManyField(Tag,verbose_name='tag')
@@ -37,4 +37,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.blog
-

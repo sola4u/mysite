@@ -2,13 +2,17 @@ from django.shortcuts import render,render_to_response
 from django import forms
 from django.http import Http404
 from .models import *
+from markdownx.fields import MarkdownxFormField
 import datetime
+from rbac.models import UserInfo
+from django.conf import settings
 
 class Blog2(forms.Form):
     title = forms.CharField(max_length=32)
-    author = forms.CharField(max_length=16)
-    content = forms.CharField()
-    catagory = forms.CharField() 
+    # author = forms.CharField(max_length=16)
+    # content = forms.CharField()
+    content = MarkdownxFormField()
+    catagory = forms.CharField()
     tag = forms.CharField()
 class CommentForm(forms.Form):
     name = forms.CharField()
@@ -21,8 +25,8 @@ def write_blogs(request):
         blog_form = Blog2(request.POST)
         if blog_form.is_valid():
             title = blog_form.cleaned_data['title']
-            author = blog_form.cleaned_data['author']
             content = blog_form.cleaned_data['content']
+            author = request.session['username']
 #            created_date = blog_form.cleaned_data['created_date']
             catagory = blog_form.cleaned_data['catagory']
             tag = blog_form.cleaned_data['tag']
@@ -50,7 +54,9 @@ def get_details(request,blog_id):
     	blog = Blog.objects.get(id=blog_id)
     except Blog.DoesNotExist:
     	raise Http404
-    return render_to_response('blog/blog_details.html',{"blog":blog})
+    blog_sort = Blog.objects.all().order_by('-id').first()
+    blog_number = blog_sort.id
+    return render_to_response('blog/blog_details.html',{"blog":blog,'blog_number':blog_number})
 #    if request.method =='GET':
 #        form = CommentForm()
 #    else:

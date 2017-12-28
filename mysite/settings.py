@@ -24,7 +24,6 @@ SECRET_KEY = 'm5p=^0_y%6-%0b9xq6b)@h@$!7*i#d7db+a@&qp4%$pu)1@6e3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -40,6 +39,8 @@ INSTALLED_APPS = [
     'users',
     'blog',
     'rbac',
+    'markdownx',
+    'markdown_deux',
 ]
 
 MIDDLEWARE = [
@@ -125,8 +126,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
-
-LOGIN_URL = '/rabc/login/'
+LOGIN_URL = r'/login/'
 REGEX_URL = r'^{url}/$'
 
 SAFE_URL = [
