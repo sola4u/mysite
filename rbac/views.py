@@ -54,12 +54,12 @@ def login(request):
             if (len(userResult)>0):
                 userResult2 = User.objects.get(username=username)
                 request.session['member_id'] = userResult2.id
-                # request.session['username'] = userResult2.username
-                # request.session['nickname'] = userResult2.nickname
+                request.session['username'] = userResult2.username
+                request.session['nickname'] = userResult2.nickname
                 init_permission(request, userResult2)
                 msg  = username + u'，登录成功！'
                 #return render_to_response('rbac/index.html',{"msg":msg})
-                return render_to_response('main.html')
+                return render_to_response('main.html',{"nickname":request.session['nickname']})
                 # return render(request,'main.html')
             else:
                 return render_to_response('rbac/login.html',{"userform":userform,"msg":"用户名或密码错误！"})
@@ -70,7 +70,8 @@ def login(request):
 
 def logout(request):
     try:
-        del request.session['member_id']
+        # del request.session['member_id']
+        request.session.clear()
     except KeyError:
         pass
    # return render_to_response("main.html",{'name':'Stranger'})

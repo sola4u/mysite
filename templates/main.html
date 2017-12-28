@@ -40,19 +40,18 @@ function changeSrc(srcname){
 		width: 99%;
 		height: 120px;
 		/*margin-top: -20px;*/
-		text-indent: 4em;
 		/*border-radius: 20px;*/
 		box-shadow: 5px 5px 5px silver;
 		/*box-shadow: 10px 10px 5px silver;*/
 	}
 	#name {
-		text-align:left ;
+		text-align:center ;
 		line-height: 40px;
 		height: 40px;
 		width: 350px;
 		margin-left: 75%;
-		margin-top: -60px;
-		/*border-radius: 20px;*/
+		margin-top: -50px;
+		border-radius: 20px;
 		border-style: dashed;
 		border-width: 1px;
 		background-color: #f0f0f0;
@@ -75,13 +74,20 @@ function changeSrc(srcname){
 		margin-top:1px;
 		text-align:center ;
 	}
+	h1 {
+		border-style:solid;
+		border-radius:20px;
+		background-color:#f0f0f0;
+		width:600px;
+		margin-left:20px;
+		text-align:center;
+		font-size: 40px;
+	}
 </style>
 <body>
 <div id='head' >
-		<h1 style="border-style:solid;border-radius:20px;background-color:#f0f0f0;width:600px;margin-left:20px;text-align:left;">DJANGO个人学习博客</h1>
-		<h2 id='name'>欢迎登陆 {{ nickname }}
-		<a href='/rbac/logout'>  登出 </a>
-		</h2>
+		<h1>DJANGO个人学习博客</h1>
+		<h2 id='name'>欢迎登陆: {{ nickname }}<a href='/rbac/logout'> &nbsp;&nbsp;&nbsp;&nbsp; 登出 </a></h2>
 </div>
 	<div id='sidebar' height="100%">
 			<button onclick="changeSrc('/blog/editor')">editor</button>

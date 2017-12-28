@@ -7,6 +7,7 @@ import datetime
 from rbac.models import UserInfo
 from django.conf import settings
 
+
 class Blog2(forms.Form):
     title = forms.CharField(max_length=32)
     # author = forms.CharField(max_length=16)
@@ -26,7 +27,7 @@ def write_blogs(request):
         if blog_form.is_valid():
             title = blog_form.cleaned_data['title']
             content = blog_form.cleaned_data['content']
-            author = request.session['username']
+            author = request.session['nickname']
 #            created_date = blog_form.cleaned_data['created_date']
             catagory = blog_form.cleaned_data['catagory']
             tag = blog_form.cleaned_data['tag']
@@ -56,7 +57,11 @@ def get_details(request,blog_id):
     	raise Http404
     blog_sort = Blog.objects.all().order_by('-id').first()
     blog_number = blog_sort.id
-    return render_to_response('blog/blog_details.html',{"blog":blog,'blog_number':blog_number})
+    a = blog.tag.all()
+    b = []
+    for i in range(len(a)):
+        b.append(a[i].name)
+    return render_to_response('blog/blog_details.html',{"blog":blog,'blog_number':blog_number,'tag':b})
 #    if request.method =='GET':
 #        form = CommentForm()
 #    else:
