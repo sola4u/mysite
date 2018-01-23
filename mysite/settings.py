@@ -40,14 +40,14 @@ INSTALLED_APPS = [
     'blog',
     'rbac',
     'markdownx',
-    'markdown_deux',
+    'markdown',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'rbac.context_processor.nickname',
+                # 'rbac.context_processor.quanxian',
             ],
         },
     },
@@ -130,15 +131,16 @@ LOGIN_URL = r'/login/'
 REGEX_URL = r'^{url}/$'
 
 SAFE_URL = [
-        r'/login/',
+        '/login/',
         '/admin/.*',
         '/test/',
         '/index/',
-        '^/rbac/',
+        '/logout/',
+        '/main/',
+        # '^/rbac/',
 ]
 
 SESSION_PERMISSION_URL_KEY = "cool"
 SESSION_MENU_KEY = "awesome"
 ALL_MENU_KEY = "k1"
 PERMISSION_MENU_KEY ="k2"
-USERNAME = 'anonymous'

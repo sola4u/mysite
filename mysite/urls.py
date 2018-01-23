@@ -20,6 +20,7 @@ from markdownx import urls as markdownx
 
 urlpatterns = [
     url(r'^login/',views.login),
+    url(r'^main/',views.main),
     url(r'^admin/', admin.site.urls),
     url(r'^users/',include("users.urls")),
     url(r'^blog/',include('blog.urls')),

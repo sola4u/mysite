@@ -5,4 +5,5 @@ urlpatterns = [
     url(r"^login/$", views.login),
     url(r"^regist/$", views.regist),
     url(r"^logout/$", views.logout),
+    url(r'^quanxian/$',views.authorize),
 ]

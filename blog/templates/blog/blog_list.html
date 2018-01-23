@@ -1,44 +1,68 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-{% load static %}
-{% load markdown_deux_tags %}
+{% load static %} {% load custom_markdown %}
+<link type="text/css" rel='stylesheet' href="{% static 'css/md.css' %}" />
+<link type="text/css" rel='stylesheet' href="{% static 'css/monokai.css' %}" />
 <style type="text/css">
-	body{
-		background: #f0f0f0;
-	}
-	#blog {
-		background-color:#ffffff;
-		margin-bottom: 60px;
-		height: 335px;
-		margin-top: -22px;
-		margin-left: -10px;
-		/*border-radius: 20px;*/
-		box-shadow: 5px 5px 5px silver;
-	}
-	#b{
-		font-size: 18px;
-		margin-left: 100px;
-		margin-right: 100px;
-	}
+  body {
+    background: #f0f0f0;
+  }
+
+  #blog {
+    background-color: #ffffff;
+    margin-bottom: 60px;
+    height: 328px;
+    margin-top: -22px;
+    margin-left: -10px;
+    text-indent: 2em;
+    box-shadow: 5px 5px 5px silver;
+    overflow: hidden;
+  }
+
+  #b {
+    font-size: 18px;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
+  #tag {
+    background-color: green;
+    float: left;
+    margin-right: 5px;
+    min-width: 50px;
+    min-height: 20px;
+    text-indent: 0;
+    text-align: center;
+    color: silver;
+    border-radius: 15px;
+  }
 </style>
+
 <body>
-	<div>
-			{% for blog in blogs %}
-			<div id='blog'>
-			<div style="margin-left:50px;margin-right:50px;scrolling:yes">
-			<h1 style="text-align:center;">{{ blog.title }}</h1>
-			<p style="text-align:center;"><span>作者：{{ blog.author }}</span>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<span>发表日期：{{ blog.created_date|date:"Y-m-d " }}</span>
-      <p style="background-color:green;width:50px;text-align:center;border-radius:10px;color:white;">{{ blog.catagory }}</p>
-			<!-- <span>{{ tags.name }}</span> -->
-			</p>
-			<a href="{% url 'blog_get_detail' blog.id %}" style="color:black;text-decoration: none;">
-			<p id='b'>	{{ blog.content |markdown| truncatechars:200 }} </p>
-			</a>
-		</div>
-	</div>
-			{% endfor %}
-	</div>
+  <div>
+    {% for blog in blogs %}
+    <div id='blog'>
+      <div style="margin-left:50px;margin-right:50px;scrolling:yes">
+        <div style="background-color:#f0f0f0">
+        <h1 style="text-align:center">{{ blog.title }}</h1>
+        <p style="text-align:center;"><span>作者：{{ blog.author }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span>发表日期：{{ blog.created_date|date:"Y-m-d " }}</span>
+          </br>
+          <div id='tag'>{{ blog.catagory }}</div>
+          {% for i in blog.tag.all %}
+          <div id='tag' style='background-color:red;'>
+            {{ i.name }}
+          </div>
+          {% endfor %}
+        </div>
+          </br>
+          <a href="{% url blog_detail blog.id %}" style="color:black;text-decoration: none;">
+            <p id='b'> {{ blog.content|custom_markdown }} </p>
+          </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 </body>
+
 </html>

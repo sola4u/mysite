@@ -25,4 +25,4 @@ def init_permission(request, user_obj):
             settings.PERMISSION_MENU_KEY:permission_menu_list,
         }
 
-    # request.session.set_expiry(3)
+    # request.session.set_expiry(3600) #设置账号session cookie保存时限

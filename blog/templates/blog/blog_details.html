@@ -1,68 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
-{% load markdown_deux_tags %}
-<link type="text/css" rel='stylesheet' href="{% static 'css/code.css' %}" />
+{% load static %} {% load custom_markdown %}
+<link type="text/css" rel='stylesheet' href="{% static 'css/md.css' %}" />
+<link type="text/css" rel='stylesheet' href="{% static 'css/monokai.css' %}" />
 <style>
-body {
-  background-color: #f0f0f0;
-}
- #blog {
-  background-color: #ffffff;
-	box-shadow: 5px 5px 5px silver;
-  min-height: 695px;
-  margin-top: -22px;
-  margin-left: -10px;
-}
-  #inner{
-  background-color: #ffffff;
-  margin-left: 100px;
-  margin-right: 150px;
-  text-indent: 2em;
+  body {
+    background-color: #f0f0f0;
   }
-  #a {
-    text-align: center;
+
+  #blog {
+    background-color: #ffffff;
+    box-shadow: 5px 5px 5px silver;
+    min-height: 708px;
+    margin-top: -22px;
+    margin-left: -10px;
   }
-  a{
+
+  #inner {
+    background-color: #ffffff;
+    margin-left: 100px;
+    margin-right: 150px;
+    text-indent: 2em;
+  }
+
+  a {
     text-decoration: none;
-    color:green;
+    color: green;
   }
+
+  #a {
+    float: left;
+    width: 33%;
+    text-align: center;
+    margin-bottom: 100px;
+  }
+
   #tag {
-    background-color:green;
-    width:100px;
-    text-indent:0;
-    text-align:center;
-    border-radius:10px;
-    color:white;
+    background-color: green;
+    min-width: 50px;
+    min-height: 20px;
+    text-align: center;
+    text-indent: 0;
+    margin-right: 5px;
+    color: white;
+    float: left;
+    border-radius: 15px;
+  }
+
+  #biaoti {
+    float: left;
   }
 </style>
+
 <body>
-<div id='blog'>
-  <div id='inner'>
-  </br>
-    <h1 style="text-align:center;">{{ blog.title }}</h1>
-			<p style="text-align:center;"><span>作者：{{ blog.author }}</span>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<span>发表日期：{{ blog.created_date|date:"Y-m-d " }}</span>
-      <p><span id='tag'>&nbsp;&nbsp;&nbsp;{{ blog.catagory }}&nbsp;&nbsp;&nbsp;</span>
-      {% for i in tag %}
-      <span id='tag' style='background-color:red;'>&nbsp;&nbsp;&nbsp;{{ i }}&nbsp;&nbsp;&nbsp;</span>
+  <div id='blog'>
+    <div id='inner'>
+      </br>
+      <h1 style="text-align:center;">{{ blog.title }}</h1>
+      </br>
+      <div id='tag'>{{ blog.catagory }}</div>
+      {% for i in blog.tag.all %}
+      <div id='tag' style='background-color:red;'>{{ i }}</div>
       {% endfor %}
-      </p>
-    <p style="text-indent:2em; font-size:20px;">{{ blog.content|markdown:'codehilite' }}</p>
-    <div id='a'>
-    {% if blog.id  <  blog_number  %}
-    <span><a href="{% url 'blog_get_detail' blog.id|add:+1 %}"> <<- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></span>
-    {% endif %}
-    <span><a href="/blog/blog">返回</a></span>
-    {% if blog.id|add:-1 %}
-    <span><a href="{% url 'blog_get_detail' blog.id|add:-1 %}"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;->> </a></span>
-    {% endif %}
+      <div id='tag' style="width:70%;height:2em;background-color:white;color:black;">
+        <p style="text-align:center;"><span>作者：{{ blog.author }}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span>发表日期：{{ blog.created_date|date:"Y-m-d " }}</span>
+          <p>
+      </div>
+      <div id='tag' style="background-color:green;">
+        <a href="/blog/edit?nid={{ blog.id }}" style="color:white">编辑</a>
+      </div>
+      <div id='tag' style="background-color:red;">
+        <a href="{% url 'blog_del' blog.id %}" style="color:white">删除</a>
+      </div>
+      </br>
+      </br>
+      <div style="min-height:400px;">
+        <p style="text-indent:2em; font-size:20px;">{{ blog.content|custom_markdown|safe }}</p>
+      </div>
+      <div id='a'>
+        <a href="{% url blog_detail pre_blog_id %}">
+          <-{{ pre_blog_title }} </a>
+      </div>
+      <div id='a'>
+        <a href="/blog/blog">返回</a></span>
+      </div>
+      <div id='a'>
+        <a href="{% url blog_detail next_blog_id %}">{{ next_blog_title }}-> </a>
+      </div>
+      </br>
+      </br>
+      </br>
+      </br>
+      </br>
+      </br>
+    </div>
   </div>
-</div>
-</br>
-</br>
-</div>
-</div>
 </body>
+
 </html>
