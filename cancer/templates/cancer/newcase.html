@@ -1,0 +1,64 @@
+<!doctype html>
+{% load static %}
+<script src='http://libs.baidu.com/jquery/1.10.2/jquery.min.js'></script>
+<script src="../../static/js/city-picker.data.js"></script>
+<script src="../../static/js/city-picker.js"></script>
+<script>
+var a = $('#a').val()
+$(document).ready(function(){
+  $('#c').click(function(){
+    alert(a);
+  });
+})
+</script>
+<link rel='stylesheet' type='text/css' href='../../static/css/city-picker.css' />
+<meta charset="UTF-8">
+<style>
+input {
+  width: 400px;
+}
+</style>
+<html lang='en'>
+<div style="position: relative;"><!-- container -->
+  <input id='a' type="text" data-toggle="city-picker">
+  <input  id='b' type='text' value=''/>
+  <button id='c'>dianwo</button>
+</div>
+</html>
+<!--
+<span>编号</span>{{ form.card_id}}</br>
+<span>ICD_10编码</span>{{ form.icd_10_code }}</br>
+<span>ICD_O编码</span>{{ form.icd_o_code }}</br>
+<span>门诊号</span>{{ form.patient_no }}</br>
+<span>住院号</span>{{ form.hospitalized_no }}</br>
+<span>身份证号码</span>{{ form.id_no }}</br>
+<span>姓名</span>{{ form.name }}</br>
+<span>性别</span>{{ form.gender }}</br>
+<span>民族</span>{{ form.race }}</br>
+<span>出生日期</span><input type="date" name='{{ form.birth_date }}'  /></br>
+<span>实足年龄</span>{{ form.exact_age }}</br>
+<span>婚姻状况</span>{{ form.marriage }}</br>
+<span>电话号码</span>{{ form.telephone }}</br>
+<span>职业（工种）</span>{{ form.occupation }}</br>
+<span>工作单位</span>{{ form.company }}</br>
+<span>户籍地址
+</span>
+<span>常住地址</span>{{ form.residence }}</br>
+<span>诊断</span>{{ form.diagnosis }}</br>
+<span>病理学类型</span>{{ form.pathology }}</br>
+<span>诊断日期</span>{{ form.diagnose_date }}</br>
+<span>出生日期</span><input type="date" name='{{ form.birth_date }}'  /></br>
+<span>实足年龄</span>{{ form.exact_age }}</br>
+<span>诊断单位</span>{{ form.diagnose_hospital }}</br>
+<span>随访</span>{{ form.follow_up}}</br>
+<span>结局</span>{{ form.result }}</br>
+<span>死亡日期</span>{{ form.death_date }}</br>
+<span>死亡原因</span>{{ form.death_reason }}</br>
+<span>死亡地点</span>{{ form.death_point }}</br>
+<span>报告人</span>{{ form.reporter }}</br>
+<span>报告单位</span>{{ form.report_hospital }}</br>
+<span>报告日期</span>{{ form.report_date }}</br>
+<span>诊断依据</span>{{ form.diagnose_type }}</br>
+<span>原诊断</span>{{ form.pre_diagnosis }}</br>
+<span>原诊断日期</span>{{ form.pre_diagnose_date }}</br>
+<input name='census_register' type="text" data-toggle="city-picker"  style="width:400px"  /> -->

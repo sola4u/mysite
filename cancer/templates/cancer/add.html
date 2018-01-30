@@ -1,0 +1,51 @@
+<!doctype html>
+{% load static %}
+<script src='http://libs.baidu.com/jquery/1.10.2/jquery.min.js'></script>
+<script src=" {% static 'js/city-picker.data.js' %}"></script>
+<script src="{% static 'js/city-picker.js' %}"></script>
+<link rel='stylesheet' type='text/css' href='{% static "css/city-picker.css" %}' />
+<style>
+</style>
+<html>
+  <body>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div style="position: relative;"><!-- container -->
+          <input type="text" name='card_id'  />card_id</br>
+          <input type="text" name='card_type'  />card_id</br>
+          <input type="text" name='icd_10_code'  />icd10</br>
+          <input type="text" name='icd_o_code'  />icd0</br>
+          <input type="text" name='patient_no'  />patient_no</br>
+          <input type="text" name='hospitalized_no'  />hospitalized_no</br>
+          <input type="text" name='id_no'  />idno</br>
+          <input type="text" name='name'  />name  </br>
+          <input type="text" name='gender'  />gender</br>
+          <input type="text" name='race'  />race</br>
+          <input type="text" name='birth_date'  />birth_date</br>
+          <input type="text" name='exact_age'  />exact_age</br>
+          <input type="text" name='marriage'  />marriage</br>
+          <input type="text" name='telephone'  />telephone</br>
+          <input type="text" name='occupation'  />occupation</br>
+          <input type="text" name='company'  />company</br>
+          <input type="text"  name='census_register'  style="width:300px;" />census_register</br>
+          <input type="text" name='residence'  />residence</br>
+          <input type="text" name='diagnosis'  />diagnosis</br>
+          <input type="text" name='pathology'  />pathology</br>
+          <input type="text" name='diagnose_type'  />
+          <input type="text" name='diagnose_date'  />date</br>
+          <input type="text" name='diagnose_hospital'  />
+          <input type="text" name='follow_up'  />
+          <input type="text" name='result'  />
+          <input type="text" name='death_date'  />date</br>
+          <input type="text" name='death_reason'  />
+          <input type="text" name='death_point'  />
+          <input type="text" name='reporter'  />
+          <input type="text" name='report_date'  />date</br>
+          <input type="text" name='report_hospital'  />
+          <input type="text" name='pre_diagnosis'  />
+          <input type="text" name='pre_diagnose_date'  />date</br>
+          <input type="submit" value="SUBMIT" />
+    </div>
+    </form>
+  </body>
+</html>

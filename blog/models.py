@@ -19,6 +19,7 @@ class Tag(models.Model):
 class Blog(models.Model):
     title = models.CharField('title',max_length=32)
     author = models.CharField('author',max_length=16)
+    # author2 = models.CharField('author2',max_length=16)
     # content = models.TextField('content')
     content = MarkdownxField()
     created_date = models.DateTimeField('created_date',auto_now_add=True)

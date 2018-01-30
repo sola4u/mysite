@@ -105,3 +105,17 @@ def authorize(request):
     {'title':'accont','urls':['/rbac/regist','/rbac/login']}
     ]
     return render(request,'rbac/quanxian.html',{'quanxian':quanxian})
+
+
+def user_edit(request):
+    if request.method == 'GET':
+        user = request.session['username']
+        user_detail = User.objects.get(username=user)
+        return render(request, 'rbac/user_edit.html',{'user_detail':user_detail})
+    elif request.method == 'POST':
+        nickname = request.POST.get('nickname')
+        password = request.POST.get('password')
+        user = request.session['username']
+        user_detail = User.objects.get(username=user)
+        User.objects.filter(username=user).update(nickname=nickname,password=password)
+        return render(request, 'rbac/user_edit.html',{'user_detail':user_detail})

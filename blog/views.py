@@ -27,6 +27,7 @@ def write_blog(request):
             content = blog_form.cleaned_data['content']
             content = content.replace('<script>','&lt;script&gt;').replace('</script>','&lt;/script&gt;')
             author = request.session['nickname']
+            # author2 = request.session['nickname']
 #            created_date = blog_form.cleaned_data['created_date']
             catagory = blog_form.cleaned_data['catagory']
             tag = blog_form.cleaned_data['tag']

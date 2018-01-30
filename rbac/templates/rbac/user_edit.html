@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<body>
+  <div>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="text" name='username' placeholder="{{ user_detail.username }}" /></br>
+      <input type="text" name='nickname' value="{{ user_detail.nickname}}" /></br>
+      <input type="text" name='password' value="{{ user_detail.password}}" /></br>
+      <input type="text" name='password2' value="{{ user_detail.password}}" /></br>
+      <input type="submit" name='submit' />
+    </form>
+  </div>
+</body>
+</html>

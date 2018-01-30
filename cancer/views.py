@@ -1,16 +1,14 @@
 from django.shortcuts import render
 from .models import Cancer
-from django import forms
+from .forms import Patient
 import datetime
 from django.conf import settings
 
 # Create your views here.
-class Patient(forms.Form):
-    
 
 def add_patient(request):
     if request.method == 'POST':
-        new_patient = Patient(request)
+        new_patient = Patient(request.POST)
         if new_patient.is_valid():
             card_id = new_patient.cleaned_data['card_id']
             card_type = new_patient.cleaned_data['card_type']
@@ -20,6 +18,7 @@ def add_patient(request):
             hospitalized_no = new_patient.cleaned_data['hospitalized_no']
             id_no = new_patient.cleaned_data['id_no']
             name = new_patient.cleaned_data['name']
+            gender = new_patient.cleaned_data['gender']
             race = new_patient.cleaned_data['race']
             birth_date = new_patient.cleaned_data['birth_date']
             exact_age = new_patient.cleaned_data['exact_age']
@@ -27,7 +26,7 @@ def add_patient(request):
             telephone = new_patient.cleaned_data['telephone']
             occupation = new_patient.cleaned_data['occupation']
             company = new_patient.cleaned_data['company']
-            census_register = new_patient.cleaned_data['new_patient']
+            census_register = new_patient.cleaned_data['census_register']
             residence = new_patient.cleaned_data['residence']
             diagnosis = new_patient.cleaned_data['diagnosis']
             pathology = new_patient.cleaned_data['pathology']
@@ -43,7 +42,7 @@ def add_patient(request):
             report_date = new_patient.cleaned_data['report_date']
             pre_diagnosis = new_patient.cleaned_data['pre_diagnosis']
             pre_diagnose_date = new_patient.cleaned_data['pre_diagnose_date']
-            Patient.objects.create(card_id=card_id, card_type=card_type,icd_10_code=icd_10_code,
+            Cancer.objects.create(card_id=card_id, card_type=card_type,icd_10_code=icd_10_code,
                                    icd_o_code=icd_o_code,patient_no=patient_no,hospitalized_no=hospitalized_no,
                                    id_no=id_no,name=name,gender=gender,race=race,birth_date=birth_date,
                                    exact_age=exact_age,marriage=marriage,telephone=telephone,occupation=occupation,
@@ -52,11 +51,11 @@ def add_patient(request):
                                    diagnose_date=diagnose_date,diagnose_hospital=diagnose_hospital,
                                    death_date=death_date,death_reason=death_reason,reporter=reporter,
                                    pre_diagnosis=pre_diagnosis,pre_diagnose_date=pre_diagnose_date,
-                                   follow_up=follow_up,death_point=death_point).save()
-            return render(request,'cancer/add_patient.html',{'form':new_patient})
+                                   follow_up=follow_up,death_point=death_point,report_date=report_date).save()
+            return render(request,'cancer/add.html',{'form':new_patient})
     else:
         new_patient = Patient()
-    return render(request,'cancer/add_patient.html',{'form':new_patient})
+    return render(request,'cancer/add.html',{'form':new_patient})
 
 def bianhao(request):
     a = CanPatient.objects.all().last().card_id

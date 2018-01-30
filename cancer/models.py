@@ -1,17 +1,18 @@
+# coding:utf-8
 from django.db import models
 
 # Create your models here.
 class Cancer(models.Model):
-    card_id = models.IntegerField()
+    card_id = models.IntegerField(blank=True,null=True)
     card_type_choices =(
         (1,'发病卡'),
         (2,'死亡卡'),
     )
     card_type = models.IntegerField(choices=card_type_choices)
-    icd_10_code = models.CharField(max_length=8,blank=True)
-    icd_o_code = models.CharField(max_length=8,blank=True)
-    patient_no = models.IntegerField()
-    hospitalized_no = models.IntegerField()
+    icd_10_code = models.CharField(max_length=8,blank=True,null=True)
+    icd_o_code = models.CharField(max_length=8,blank=True,null=True)
+    patient_no = models.IntegerField(blank=True,null=True)
+    hospitalized_no = models.IntegerField(blank=True,null=True)
     id_no = models.CharField(max_length=18,blank=True)
     name = models.CharField(max_length=40)
     gender_choices = (
@@ -52,7 +53,7 @@ class Cancer(models.Model):
         (4,'失访'),
         (9,'不详'),
     )
-    follow_up = models.IntegerField(choices=follow_up_choice)
+    follow_up = models.IntegerField(choices=follow_up_choice,blank=True,null=True)
     result = models.CharField(max_length=16)
     death_date = models.DateField()
     death_reason = models.CharField(max_length=16)
@@ -64,7 +65,7 @@ class Cancer(models.Model):
         (5,'家中'),
         (6,'不详'),
     )
-    death_point = models.IntegerField(choices=death_point_choices)
+    death_point = models.IntegerField(choices=death_point_choices,blank=True,null=True)
     reporter = models.CharField(max_length=8)
     death_point = models.CharField(max_length=16)
     report_hospital = models.CharField(max_length=16)
@@ -72,3 +73,5 @@ class Cancer(models.Model):
     pre_diagnosis = models.CharField(max_length=16,blank=True)
     pre_diagnose_date = models.DateField(blank=True)
 
+    def __str__(self):
+        return self.name

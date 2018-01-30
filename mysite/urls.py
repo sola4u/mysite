@@ -22,8 +22,8 @@ urlpatterns = [
     url(r'^login/',views.login),
     url(r'^main/',views.main),
     url(r'^admin/', admin.site.urls),
-    url(r'^users/',include("users.urls")),
     url(r'^blog/',include('blog.urls')),
     url(r'^rbac/',include('rbac.urls')),
     url(r'^markdownx/',include(markdownx)),
+    url(r'^cancer/',include('cancer.urls')),
 ]
