@@ -6,7 +6,7 @@ from django.conf import settings
 
 # Create your views here.
 
-def add_patient(request):
+def add(request):
     if request.method == 'POST':
         new_patient = Patient(request.POST)
         if new_patient.is_valid():
@@ -18,7 +18,6 @@ def add_patient(request):
             hospitalized_no = new_patient.cleaned_data['hospitalized_no']
             id_no = new_patient.cleaned_data['id_no']
             name = new_patient.cleaned_data['name']
-            gender = new_patient.cleaned_data['gender']
             race = new_patient.cleaned_data['race']
             birth_date = new_patient.cleaned_data['birth_date']
             exact_age = new_patient.cleaned_data['exact_age']
@@ -26,8 +25,10 @@ def add_patient(request):
             telephone = new_patient.cleaned_data['telephone']
             occupation = new_patient.cleaned_data['occupation']
             company = new_patient.cleaned_data['company']
-            census_register = new_patient.cleaned_data['census_register']
-            residence = new_patient.cleaned_data['residence']
+            census_register_town = new_patient.cleaned_data['census_register_town']
+            census_register_exact = new_patient.cleaned_data['census_register_exact']
+            residence_town = new_patient.cleaned_data['residence_town']
+            residence_exact = new_patient.cleaned_data['residence_exact']
             diagnosis = new_patient.cleaned_data['diagnosis']
             pathology = new_patient.cleaned_data['pathology']
             diagnose_type = new_patient.cleaned_data['diagnose_type']
@@ -46,12 +47,13 @@ def add_patient(request):
                                    icd_o_code=icd_o_code,patient_no=patient_no,hospitalized_no=hospitalized_no,
                                    id_no=id_no,name=name,gender=gender,race=race,birth_date=birth_date,
                                    exact_age=exact_age,marriage=marriage,telephone=telephone,occupation=occupation,
-                                   company=company,census_register=census_register,residence=residence,
-                                   diagnosis=diagnosis,pathology=pathology,diagnose_type=diagnose_type,
-                                   diagnose_date=diagnose_date,diagnose_hospital=diagnose_hospital,
+                                   company=company,census_register_town=census_register_town,
+                                   census_register_exact=census_register_exact,residence_town=residence_town,
+                                   residence_exact=residence_exact,diagnosis=diagnosis,pathology=pathology,
+                                   diagnose_type=diagnose_type,diagnose_date=diagnose_date,diagnose_hospital=diagnose_hospital,
                                    death_date=death_date,death_reason=death_reason,reporter=reporter,
                                    pre_diagnosis=pre_diagnosis,pre_diagnose_date=pre_diagnose_date,
-                                   follow_up=follow_up,death_point=death_point,report_date=report_date).save()
+                                   follow_up=follow_up,death_point=death_point).save()
             return render(request,'cancer/add.html',{'form':new_patient})
     else:
         new_patient = Patient()
@@ -64,3 +66,5 @@ def bianhao(request):
     else:
         b = 1
     return b
+
+# Create your views here.
